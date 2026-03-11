@@ -1,0 +1,20 @@
+import { userRepository } from "../repositories/user.repository"
+import { UserModel } from "../models/user.model"
+
+export const userService = {
+
+  getAll() {
+    return userRepository
+      .findAll()
+      .map(u => new UserModel(u))
+  },
+
+  create(data: { name: string, role: string }) {
+    userRepository.create(data.name, data.role)
+  },
+
+  delete(id: number) {
+    userRepository.delete(id)
+  }
+
+}
